@@ -9,3 +9,11 @@
 .btn{
     @apply rounded-full py-2 px-3 uppercase text-xs cursor-pointer font-bold tracking-wider mx-2
 }
+
+.task{
+    @apply border-l-8 border-emerald-500 pl-2
+}
+
+.task_button{
+    @apply text-primary btn border-2 border-primary hover:bg-primary hover:text-white transition ease-out duration-500
+}

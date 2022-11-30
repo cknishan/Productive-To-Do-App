@@ -11,9 +11,14 @@
 }
 
 .task{
-    @apply border-l-8 border-emerald-500 pl-2
+    @apply border-l-8 border-emerald-500 pl-2 flex justify-between bg-slate-300 rounded
+    px-2 py-1
+}
+
+.task svg:hover{
+    cursor: pointer;
 }
 
 .task_button{
-    @apply text-primary btn border-2 border-primary hover:bg-primary hover:text-white transition ease-out duration-500
+    @apply text-primary btn border-2 border-primary hover:bg-primary hover:text-white transition ease-out duration-500 
 }

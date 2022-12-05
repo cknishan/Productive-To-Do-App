@@ -12,7 +12,7 @@
 
 .task{
     @apply border-l-8 border-emerald-500 pl-2 flex justify-between bg-slate-300 rounded
-    px-2 py-1
+    px-2 py-1 my-2
 }
 
 .task svg:hover{

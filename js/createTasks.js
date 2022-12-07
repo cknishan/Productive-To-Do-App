@@ -9,8 +9,10 @@ const taskForm = document.querySelector("#add-task")
 
 // reference to todo tasks and completed section
 const todoTasks = document.querySelector("#todoTasks")
-const completedTasks = document.querySelector("#completedTasks")
 
+/**
+ * function add task 
+ */
 taskForm.addEventListener('submit', (e) => {
   e.preventDefault()
 
@@ -18,7 +20,7 @@ taskForm.addEventListener('submit', (e) => {
   if (task.value.trim() != "") {
 
     // create new html
-    let newTask = `
+    let newTaskHTML = `
         <div class="task" >
         <div class="taskTextDiv">${task.value.trim()}</div>
         <div class="grid place-items-center">                
@@ -36,7 +38,12 @@ taskForm.addEventListener('submit', (e) => {
         </div>
         `
     // add the html to the todoTasks section
-    todoTasks.innerHTML += newTask
+    todoTasks.innerHTML += newTaskHTML
+
+    // OOP: construct an object (Task) and add to another object (TaskList)
+    let newTask = new Task(task.value.trim())
+    Tasks.addTask(newTask)
+    
   }
   task.value = ""
 
@@ -49,22 +56,33 @@ taskForm.addEventListener('submit', (e) => {
   let taskTextDiv = document.querySelectorAll(".taskTextDiv")
 
   // delete task functionality
-  trashIcon.forEach((iconElement) => {
+  for (let idx = 0; idx <trashIcon.length; idx++) {
+    let iconElement = trashIcon[idx]
     iconElement.addEventListener('click', (pointerEvent) => {
       let taskElement = iconElement.parentElement.parentElement.parentElement
       taskElement.remove()
+      Tasks.removeTask(idx)
     })
-  })
+  }
 
   // toggle completed tasks
-  taskTextDiv.forEach((textDiv) => {
+  for (let idx = 0; idx <taskTextDiv.length; idx++) {
+    let textDiv = taskTextDiv[idx]
     textDiv.addEventListener('click', () => {
       if (textDiv.classList.contains("taskCompleted")) {
         textDiv.classList.remove("taskCompleted")
+        // Tasks[idx].completed(false)
       } else {
         textDiv.classList.add("taskCompleted")
+
+        // doesnt work cuz no methods inside the taskList
+        console.log(Tasks[idx].name)
+
       }
     })
-  })
+  }
+
+
+  console.log(Tasks)
 
 })

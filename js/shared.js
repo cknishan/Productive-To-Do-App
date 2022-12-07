@@ -10,12 +10,12 @@ const STORAGE_KEY = "TaskData";
  */
 class Task
 {
-    constructor(name,category,dueDate){
+    constructor(name){
         this._name = name;
-        this._category = category;
+        this._category = null;
         this._important = false;
         this._completed = false;
-        this._dueDate = dueDate;
+        this._dueDate = null;
     }
 
     get name(){
@@ -24,6 +24,10 @@ class Task
 
     get category(){
         return this._category;
+    }
+
+    get completed() {
+        return this._category
     }
 
     get dueDate(){
@@ -40,6 +44,10 @@ class Task
 
     set category(newCategory) {
         this._category = newCategory;
+    }
+
+    set completed(boolean) {
+        this._completed = boolean
     }
 
     toggleCompleted() {
@@ -163,7 +171,7 @@ function updateLocalStorage (key, data)
     localStorage.setItem(key, json);
 }
 // Global tasks variable
-let tasks = new TaskList();
+let Tasks = new TaskList();
 
 // Check if data available in LS before continuing
 if (checkLocalStorageData (STORAGE_KEY))
@@ -171,5 +179,5 @@ if (checkLocalStorageData (STORAGE_KEY))
     // If data exists, retrieve it
     let data = getDataLocalStorage (STORAGE_KEY);
     // Restore data into tasks
-    appointments.fromData(data);
+    Tasks.fromData(data);
 }

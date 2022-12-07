@@ -10,17 +10,17 @@ const taskForm = document.querySelector("#add-task")
 // reference to todo tasks and completed section
 const todoTasks = document.querySelector("#todoTasks")
 const completedTasks = document.querySelector("#completedTasks")
- 
-taskForm.addEventListener('submit', (e)=> {
-    e.preventDefault()
-    
-    // if the form input is not empty or whitespaces
-    if (task.value.trim() != "" ){
 
-        // create new html
-        let newTask = `
+taskForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  // if the form input is not empty or whitespaces
+  if (task.value.trim() != "") {
+
+    // create new html
+    let newTask = `
         <div class="task" >
-        <div>${task.value.trim()}</div>
+        <div class="taskTextDiv">${task.value.trim()}</div>
         <div class="grid place-items-center">                
           <span>
             <!-- menu icon -->
@@ -35,26 +35,36 @@ taskForm.addEventListener('submit', (e)=> {
         </div>
         </div>
         `
-        // add the html to the todoTasks section
-        todoTasks.innerHTML += newTask
-    }
-    task.value = ""
+    // add the html to the todoTasks section
+    todoTasks.innerHTML += newTask
+  }
+  task.value = ""
 
 
-    // everytime a new task is added 
-    // the following reference and bindings needs to be updated as well
+  // everytime a new task is added 
+  // the following reference and bindings needs to be updated as well
 
-    let menuIcon = document.querySelectorAll(".menuIcon")
-    let trashIcon = document.querySelectorAll(".trashIcon")
+  let menuIcon = document.querySelectorAll(".menuIcon")
+  let trashIcon = document.querySelectorAll(".trashIcon")
+  let taskTextDiv = document.querySelectorAll(".taskTextDiv")
 
-    // delete task functionality
-    trashIcon.forEach((iconElement) => {
-        iconElement.addEventListener('click', (pointerEvent) => {
-            let taskElement = iconElement.parentElement.parentElement.parentElement
-            taskElement.remove()
-        })
+  // delete task functionality
+  trashIcon.forEach((iconElement) => {
+    iconElement.addEventListener('click', (pointerEvent) => {
+      let taskElement = iconElement.parentElement.parentElement.parentElement
+      taskElement.remove()
     })
+  })
 
-
+  // toggle completed tasks
+  taskTextDiv.forEach((textDiv) => {
+    textDiv.addEventListener('click', () => {
+      if (textDiv.classList.contains("taskCompleted")) {
+        textDiv.classList.remove("taskCompleted")
+      } else {
+        textDiv.classList.add("taskCompleted")
+      }
+    })
+  })
 
 })

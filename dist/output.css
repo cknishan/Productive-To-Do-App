@@ -698,8 +698,29 @@ video {
   padding-left: 0.5rem;
 }
 
+.taskTextDiv {
+  width: 91.666667%;
+  transition-duration: 100ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.taskTextDiv:hover {
+  cursor: pointer;
+  padding-left: 0.5rem;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.taskCompleted {
+  text-decoration-line: line-through;
+}
+
 .task svg:hover{
   cursor: pointer;
+  transform: scale(1.3);
 }
 
 .task_button {

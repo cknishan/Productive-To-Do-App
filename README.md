@@ -38,5 +38,6 @@ module.exports = {
 ```
 npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
 ```
-## 
+# Problem and Solution
+- Cannot toggle between adding, deleting from completed to todo tasks. If implemented will take unnecessary time and effort. So, instead will just strikeout toggle the task with clicks.
 

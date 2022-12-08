@@ -43,9 +43,23 @@ taskForm.addEventListener('submit', (e) => {
     // OOP: construct an object (Task) and add to another object (TaskList)
     let newTask = new Task(task.value.trim())
     Tasks.addTask(newTask)
-    
+
   }
   task.value = ""
+
+  // update the data to local storage
+  updateLocalStorage(STORAGE_KEY, Tasks)
+
+  // Create a nwe Global tasks variable because we will take the consistent data again fromt he local storage with the methods included
+  Tasks = new TaskList();
+
+  // Check if data available in LS before continuing
+  if (checkLocalStorageData(STORAGE_KEY)) {
+    // If data exists, retrieve it
+    let data = getDataLocalStorage(STORAGE_KEY);
+    // Restore data into tasks
+    Tasks.fromData(data);
+  }
 
 
   // everytime a new task is added 
@@ -56,7 +70,7 @@ taskForm.addEventListener('submit', (e) => {
   let taskTextDiv = document.querySelectorAll(".taskTextDiv")
 
   // delete task functionality
-  for (let idx = 0; idx <trashIcon.length; idx++) {
+  for (let idx = 0; idx < trashIcon.length; idx++) {
     let iconElement = trashIcon[idx]
     iconElement.addEventListener('click', (pointerEvent) => {
       let taskElement = iconElement.parentElement.parentElement.parentElement
@@ -66,7 +80,7 @@ taskForm.addEventListener('submit', (e) => {
   }
 
   // toggle completed tasks
-  for (let idx = 0; idx <taskTextDiv.length; idx++) {
+  for (let idx = 0; idx < taskTextDiv.length; idx++) {
     let textDiv = taskTextDiv[idx]
     textDiv.addEventListener('click', () => {
       if (textDiv.classList.contains("taskCompleted")) {
@@ -75,8 +89,8 @@ taskForm.addEventListener('submit', (e) => {
       } else {
         textDiv.classList.add("taskCompleted")
 
-        // doesnt work cuz no methods inside the taskList
-        console.log(Tasks[idx].name)
+        // doesnt work cuz no methods inside the taskList // works now :)
+        console.log(Tasks.taskList[idx].name)
 
       }
     })
@@ -84,5 +98,6 @@ taskForm.addEventListener('submit', (e) => {
 
 
   console.log(Tasks)
+  console.log(localStorage)
 
 })

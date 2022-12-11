@@ -43,12 +43,12 @@ taskForm.addEventListener('submit', (e) => {
     // OOP: construct an object (Task) and add to another object (TaskList)
     let newTask = new Task(task.value.trim())
     Tasks.addTask(newTask)
+    
+      // update the data to local storage
+      updateLocalStorage(STORAGE_KEY, Tasks)
 
   }
   task.value = ""
-
-  // update the data to local storage
-  updateLocalStorage(STORAGE_KEY, Tasks)
 
   // Create a nwe Global tasks variable because we will take the consistent data again fromt he local storage with the methods included
   Tasks = new TaskList();
@@ -76,8 +76,13 @@ taskForm.addEventListener('submit', (e) => {
       let taskElement = iconElement.parentElement.parentElement.parentElement
       taskElement.remove()
       Tasks.removeTask(idx)
+
+      // update the data to local storage
+      console.log("createTasks.js delete", Tasks, localStorage)
+      updateLocalStorage(STORAGE_KEY, Tasks)
     })
   }
+
 
   // toggle completed tasks
   for (let idx = 0; idx < taskTextDiv.length; idx++) {

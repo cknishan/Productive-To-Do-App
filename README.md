@@ -45,3 +45,6 @@ npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
 - However, the view data and deleted data is not consistent with the local storage retriving
   - okay got it gotta use the save/retrive functionality every time after delete, completee and add. Better if I enclose those inside a function on shared.js and call that function each time when needed.
 - also need a view.js file for a function that will show the proper todo tasks every time the page is refreshed.
+
+12/11/2022: Retriving and Updating to localstorage works. 
+But not consistent after refresh if the delete is not serially done from bottom to top. Huge bug.

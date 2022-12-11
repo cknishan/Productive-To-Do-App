@@ -172,12 +172,3 @@ function updateLocalStorage (key, data)
 }
 // Global tasks variable
 let Tasks = new TaskList();
-
-// Check if data available in LS before continuing
-if (checkLocalStorageData (STORAGE_KEY))
-{
-    // If data exists, retrieve it
-    let data = getDataLocalStorage (STORAGE_KEY);
-    // Restore data into tasks
-    Tasks.fromData(data);
-}

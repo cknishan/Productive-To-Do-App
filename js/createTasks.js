@@ -43,9 +43,9 @@ taskForm.addEventListener('submit', (e) => {
     // OOP: construct an object (Task) and add to another object (TaskList)
     let newTask = new Task(task.value.trim())
     Tasks.addTask(newTask)
-    
-      // update the data to local storage
-      updateLocalStorage(STORAGE_KEY, Tasks)
+
+    // update the data to local storage
+    updateLocalStorage(STORAGE_KEY, Tasks)
 
   }
   task.value = ""
@@ -74,12 +74,20 @@ taskForm.addEventListener('submit', (e) => {
     let iconElement = trashIcon[idx]
     iconElement.addEventListener('click', (pointerEvent) => {
       let taskElement = iconElement.parentElement.parentElement.parentElement
+
+      // console.log(idx, taskElement, Tasks.taskList[idx]) //***debugging***
+
       taskElement.remove()
+      // taskElement.style.display = "none"
       Tasks.removeTask(idx)
 
       // update the data to local storage
-      console.log("createTasks.js delete", Tasks, localStorage)
       updateLocalStorage(STORAGE_KEY, Tasks)
+      location.reload() // couldn't solve the inconsistent idx without it. uncomment the ***debugging*** for test after disabling the reload
+
+      // console.log("createTasks.js delete", Tasks.taskList, localStorage)  //***debugging***()
+      // console.log("==================================")
+
     })
   }
 

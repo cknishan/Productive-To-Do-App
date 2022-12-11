@@ -55,29 +55,21 @@ for (let idx = 0; idx < trashIcon.length; idx++) {
     let iconElement = trashIcon[idx]
     iconElement.addEventListener('click', (pointerEvent) => {
         let taskElement = iconElement.parentElement.parentElement.parentElement
+
+        // console.log(idx, taskElement, Tasks.taskList[idx]) //***debugging***
+
         taskElement.remove()
+        // taskElement.style.display = "none"
+
         Tasks.removeTask(idx)
 
         // update the data to local storage
-        console.log("view.js delete", Tasks, localStorage)
         updateLocalStorage(STORAGE_KEY, Tasks)
+        location.reload() // couldn't solve the inconsistent idx without it. uncomment the ***debugging*** for test after disabling the reload
+
+        // console.log("createTasks.js delete", Tasks.taskList, localStorage)  //***debugging***()
+        // console.log("==================================")
+
     })
 }
 
-
-// toggle completed tasks
-for (let idx = 0; idx < taskTextDiv.length; idx++) {
-    let textDiv = taskTextDiv[idx]
-    textDiv.addEventListener('click', () => {
-        if (textDiv.classList.contains("taskCompleted")) {
-            textDiv.classList.remove("taskCompleted")
-            // Tasks[idx].completed(false)
-        } else {
-            textDiv.classList.add("taskCompleted")
-
-            // doesnt work cuz no methods inside the taskList // works now :)
-            console.log(Tasks.taskList[idx].name)
-
-        }
-    })
-}

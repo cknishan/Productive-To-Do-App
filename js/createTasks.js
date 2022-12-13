@@ -96,6 +96,26 @@ taskForm.addEventListener('submit', (e) => {
   }
 
 
+  // toggle completed tasks
+  let taskTextDiv = document.querySelectorAll(".taskTextDiv")
+  // toggle completed tasks
+  for (let idx = 0; idx < taskTextDiv.length; idx++) {
+    let textDiv = taskTextDiv[idx]
+    textDiv.addEventListener('click', () => {
+      if (textDiv.classList.contains("taskCompleted")) {
+        textDiv.classList.remove("taskCompleted")
+        Tasks.taskList[idx].completed = false
+      } else {
+        textDiv.classList.add("taskCompleted")
+        Tasks.taskList[idx].completed = true
+      }
+      
+      updateLocalStorage(STORAGE_KEY, Tasks)
+      
+    })
+  }
+
+
   console.log(Tasks)
   console.log(localStorage)
 

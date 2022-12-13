@@ -553,11 +553,6 @@ video {
   min-height: 100vh;
 }
 
-.min-h-fit {
-  min-height: -moz-fit-content;
-  min-height: fit-content;
-}
-
 .w-6 {
   width: 1.5rem;
 }

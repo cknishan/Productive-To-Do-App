@@ -36,13 +36,29 @@ function displayTasks() {
     </div>
     </div>
     `
+
         // add the html to the todoTasks section
         todoTasks.innerHTML += newTaskHTML
-    }
 
+    }
 }
 
+
 displayTasks()
+
+// // consistency  of completed Tasks
+// let textDivs = [...document.querySelectorAll(".taskTextDiv")]
+// // toggle completed tasks
+// for (let idx = 0; idx < textDivs.length; idx++) {
+//     let textDiv = textDivs[idx]
+//     console.log(idx, Tasks.taskList[idx].completed)
+//     if (Tasks.taskList[idx].completed == "true") {
+//         textDiv.classList.add("taskCompleted")
+//         console.log(idx, textDiv.classList)
+
+//     }
+
+// }
 
 // referencing
 let menuIcon = document.querySelectorAll(".menuIcon")
@@ -56,9 +72,9 @@ for (let idx = 0; idx < trashIcon.length; idx++) {
         let taskTextDiv = iconElement.parentElement.parentElement
         let taskText = taskTextDiv.previousElementSibling.textContent
         let taskElement = taskTextDiv.parentElement
-  
+
         // console.log(idx, taskElement, taskTextDiv.previousElementSibling.textContent, Tasks.taskList[idx]) //***debugging***
-  
+
         // remove the task from Tasks object with the same name
         const objIdx = Tasks.taskList.findIndex((obj) => obj.name == taskText)
         console.log(objIdx)
@@ -75,3 +91,22 @@ for (let idx = 0; idx < trashIcon.length; idx++) {
     })
 }
 
+
+// toggle completed tasks
+let taskTextDiv = document.querySelectorAll(".taskTextDiv")
+// toggle completed tasks
+for (let idx = 0; idx < taskTextDiv.length; idx++) {
+    let textDiv = taskTextDiv[idx]
+    textDiv.addEventListener('click', () => {
+        if (textDiv.classList.contains("taskCompleted")) {
+            textDiv.classList.remove("taskCompleted")
+            Tasks.taskList[idx].completed = false
+        } else {
+            textDiv.classList.add("taskCompleted")
+            Tasks.taskList[idx].completed = true
+        }
+
+        updateLocalStorage(STORAGE_KEY, Tasks)
+
+    })
+}

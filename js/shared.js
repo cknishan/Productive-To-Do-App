@@ -27,7 +27,7 @@ class Task
     }
 
     get completed() {
-        return this._category
+        return this._completed
     }
 
     get dueDate(){

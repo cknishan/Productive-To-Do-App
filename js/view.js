@@ -47,28 +47,30 @@ displayTasks()
 // referencing
 let menuIcon = document.querySelectorAll(".menuIcon")
 let trashIcon = document.querySelectorAll(".trashIcon")
-let taskTextDiv = document.querySelectorAll(".taskTextDiv")
 
 
 // delete task functionality
 for (let idx = 0; idx < trashIcon.length; idx++) {
     let iconElement = trashIcon[idx]
     iconElement.addEventListener('click', (pointerEvent) => {
-        let taskElement = iconElement.parentElement.parentElement.parentElement
-
-        // console.log(idx, taskElement, Tasks.taskList[idx]) //***debugging***
+        let taskTextDiv = iconElement.parentElement.parentElement
+        let taskText = taskTextDiv.previousElementSibling.textContent
+        let taskElement = taskTextDiv.parentElement
+  
+        // console.log(idx, taskElement, taskTextDiv.previousElementSibling.textContent, Tasks.taskList[idx]) //***debugging***
+  
+        // remove the task from Tasks object with the same name
+        const objIdx = Tasks.taskList.findIndex((obj) => obj.name == taskText)
+        console.log(objIdx)
+        Tasks.removeTask(objIdx)
 
         taskElement.remove()
-        // taskElement.style.display = "none"
-
-        Tasks.removeTask(idx)
 
         // update the data to local storage
         updateLocalStorage(STORAGE_KEY, Tasks)
-        location.reload() // couldn't solve the inconsistent idx without it. uncomment the ***debugging*** for test after disabling the reload
 
-        // console.log("createTasks.js delete", Tasks.taskList, localStorage)  //***debugging***()
-        // console.log("==================================")
+        console.log("createTasks.js delete", Tasks.taskList, localStorage)  //***debugging***()
+        console.log("==================================")
 
     })
 }

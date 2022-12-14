@@ -30,6 +30,10 @@ class Task
         return this._completed
     }
 
+    get important() {
+        return this._important
+    }
+
     get dueDate(){
         return this._dueDate
     }
@@ -48,6 +52,10 @@ class Task
 
     set completed(boolean) {
         this._completed = boolean
+    }
+
+    set important(boolean) {
+        this._important = boolean
     }
 
     toggleCompleted() {

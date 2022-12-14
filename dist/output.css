@@ -549,10 +549,6 @@ video {
   height: 1.5rem;
 }
 
-.min-h-screen {
-  min-height: 100vh;
-}
-
 .w-6 {
   width: 1.5rem;
 }
@@ -720,6 +716,10 @@ video {
 
 .taskCompleted {
   text-decoration-line: line-through;
+}
+
+.starred {
+  fill: #10b981;
 }
 
 .task svg:hover{

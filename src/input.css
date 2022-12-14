@@ -23,6 +23,10 @@
     @apply line-through
 }
 
+.starred {
+    @apply fill-emerald-500
+}
+
 .task svg:hover{
     cursor: pointer;
     transform: scale(1.3);

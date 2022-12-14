@@ -26,7 +26,7 @@ taskForm.addEventListener('submit', (e) => {
         <div class="grid place-items-center">                
           <span>
           <!-- star icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block starIcon">
               <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
           </svg>
             <!-- trashcan icon -->
@@ -80,17 +80,16 @@ taskForm.addEventListener('submit', (e) => {
 
       // remove the task from Tasks object with the same name
       const objIdx = Tasks.taskList.findIndex((obj) => obj.name == taskText)
-      console.log(objIdx)
+      // console.log(objIdx)
       Tasks.removeTask(objIdx)
 
       taskElement.remove()
 
-
       // update the data to local storage
       updateLocalStorage(STORAGE_KEY, Tasks)
 
-      console.log("createTasks.js delete", Tasks.taskList, localStorage)  //***debugging***()
-      console.log("==================================")
+      // console.log("createTasks.js delete", Tasks.taskList, localStorage)  //***debugging***()
+      // console.log("==================================")
 
     })
   }
@@ -98,7 +97,6 @@ taskForm.addEventListener('submit', (e) => {
 
   // toggle completed tasks
   let taskTextDiv = document.querySelectorAll(".taskTextDiv")
-  // toggle completed tasks
   for (let idx = 0; idx < taskTextDiv.length; idx++) {
     let textDiv = taskTextDiv[idx]
     textDiv.addEventListener('click', () => {
@@ -109,14 +107,27 @@ taskForm.addEventListener('submit', (e) => {
         textDiv.classList.add("taskCompleted")
         Tasks.taskList[idx].completed = true
       }
-
       updateLocalStorage(STORAGE_KEY, Tasks)
-
     })
   }
 
+    // toggle starred tasks
+    let starIcons = document.querySelectorAll(".starIcon")
+    console.log(starIcons)
+    for (let idx = 0; idx < starIcons.length; idx++) {
+      let starIcon = starIcons[idx]
+      starIcon.addEventListener('click', () => {
+        // console.log(starIcon, starIcon.classList)
+        if (starIcon.classList.contains("starred")) {
+          starIcon.classList.remove("starred")
+          Tasks.taskList[idx].important = false
+        } else {
+          starIcon.classList.add("starred")
+          Tasks.taskList[idx].important = true
+        }
+        updateLocalStorage(STORAGE_KEY, Tasks)
+      })
+    }
 
-  console.log(Tasks)
-  console.log(localStorage)
 
 })

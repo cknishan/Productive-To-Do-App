@@ -23,11 +23,11 @@ function displayTasks() {
     <div class="task" >
     <div class="taskTextDiv">${Tasks.taskList[i].name}</div>
     <div class="grid place-items-center">                
-      <span>
-        <!-- menu icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block menuIcon">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>  
+        <span>
+        <!-- star icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+        </svg>
         <!-- trashcan icon -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block trashIcon">
           <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
@@ -41,24 +41,24 @@ function displayTasks() {
         todoTasks.innerHTML += newTaskHTML
 
     }
+    // adding the strikethrough consistency of completed Tasks after retrieving from local storage
+    let textDivs = document.querySelectorAll(".taskTextDiv")
+    for (let idx = 0; idx < textDivs.length; idx++) {
+        let textDiv = textDivs[idx]
+        let textDivText = textDivs[idx].textContent
+        Tasks.taskList.forEach(obj => {
+            if (obj.name == textDivText) {
+                if (obj.completed == true) {
+                    textDiv.classList.add("taskCompleted")
+                }
+            }
+        })
+    }
 }
 
 
 displayTasks()
 
-// // consistency  of completed Tasks
-// let textDivs = [...document.querySelectorAll(".taskTextDiv")]
-// // toggle completed tasks
-// for (let idx = 0; idx < textDivs.length; idx++) {
-//     let textDiv = textDivs[idx]
-//     console.log(idx, Tasks.taskList[idx].completed)
-//     if (Tasks.taskList[idx].completed == "true") {
-//         textDiv.classList.add("taskCompleted")
-//         console.log(idx, textDiv.classList)
-
-//     }
-
-// }
 
 // referencing
 let menuIcon = document.querySelectorAll(".menuIcon")

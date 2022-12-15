@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 .menu-li{
-    @apply flex justify-end px-3
+    @apply flex justify-end px-3 text-lg hover:pr-4 cursor-pointer hover:transition ease-in-out duration-500
+}
+
+.active-li {
+    @apply text-emerald-500
 }
 
 .btn{
@@ -11,12 +15,12 @@
 }
 
 .task{
-    @apply border-l-8 border-emerald-500 pl-2 flex justify-between bg-slate-300 rounded
+    @apply border-l-8 border-slate-900 pl-2 flex text-lg justify-between bg-slate-300 rounded
     px-2 py-1 my-2 
 }
 
 .taskTextDiv {
-    @apply w-11/12 hover:cursor-pointer hover:pl-2 hover:transition ease-in-out duration-100
+    @apply w-11/12 pl-1 hover:cursor-pointer hover:pl-4 hover:transition ease-in-out duration-500
 }
 
 .taskCompleted {

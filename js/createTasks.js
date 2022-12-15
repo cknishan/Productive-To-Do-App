@@ -13,9 +13,7 @@ const todoTasks = document.querySelector("#todoTasks")
 /**
  * function add task 
  */
-taskForm.addEventListener('submit', (e) => {
-  e.preventDefault()
-
+function createTasks() {
   // if the form input is not empty or whitespaces
   if (task.value.trim() != "") {
 
@@ -111,23 +109,29 @@ taskForm.addEventListener('submit', (e) => {
     })
   }
 
-    // toggle starred tasks
-    let starIcons = document.querySelectorAll(".starIcon")
-    console.log(starIcons)
-    for (let idx = 0; idx < starIcons.length; idx++) {
-      let starIcon = starIcons[idx]
-      starIcon.addEventListener('click', () => {
-        // console.log(starIcon, starIcon.classList)
-        if (starIcon.classList.contains("starred")) {
-          starIcon.classList.remove("starred")
-          Tasks.taskList[idx].important = false
-        } else {
-          starIcon.classList.add("starred")
-          Tasks.taskList[idx].important = true
-        }
-        updateLocalStorage(STORAGE_KEY, Tasks)
-      })
-    }
+  // toggle starred tasks
+  let starIcons = document.querySelectorAll(".starIcon")
+  // console.log(starIcons)
+  for (let idx = 0; idx < starIcons.length; idx++) {
+    let starIcon = starIcons[idx]
+    starIcon.addEventListener('click', () => {
+      // console.log(starIcon, starIcon.classList)
+      if (starIcon.classList.contains("starred")) {
+        starIcon.classList.remove("starred")
+        Tasks.taskList[idx].important = false
+      } else {
+        starIcon.classList.add("starred")
+        Tasks.taskList[idx].important = true
+      }
+      updateLocalStorage(STORAGE_KEY, Tasks)
+    })
+  }
 
+  
+}
 
+// onclick of the submit button
+taskForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+  createTasks()
 })

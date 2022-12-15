@@ -1,11 +1,12 @@
 # Productive-To-Do-App
+A Simple To Do app that is easy to use with simple clean UI and UX design.
 
-# Tools and Concepts Used: 
-- Tailwindcss: Customizing
-- Javascript: Object-Oriented Programming, DOM manupilation
-- HTML: Basic structuring.
-- CSS: Mostly tailwind
-- GIT: Tracking and version control
+## Tools and Concepts: 
+- Tailwindcss
+- Javascript
+- HTML
+- Git
+
 
 # Tailwindcss Installation / Setup 
 
@@ -37,3 +38,9 @@ module.exports = {
 ```
 npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
 ```
+# Why this Project?
+
+## Inspiration and Uniqueness
+
+## My Learning Outcome
+

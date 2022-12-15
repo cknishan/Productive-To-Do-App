@@ -15,7 +15,7 @@ if (checkLocalStorageData(STORAGE_KEY)) {
 
 // display appointment
 function displayTasks() {
-    console.log(Tasks)
+    // console.log(Tasks)
     for (let i = 0; i < Tasks.taskList.length; i++) {
 
         // create task htmls
@@ -41,6 +41,8 @@ function displayTasks() {
         todoTasks.innerHTML += newTaskHTML
 
     }
+
+    
     // adding the strikethrough consistency of completed Tasks after retrieving from local storage
     let textDivs = document.querySelectorAll(".taskTextDiv")
     for (let idx = 0; idx < textDivs.length; idx++) {
@@ -60,7 +62,7 @@ function displayTasks() {
     for (let idx = 0; idx < starIcons.length; idx++) {
         let starIcon = starIcons[idx]
         let starIconText = starIcon.parentElement.parentElement.previousElementSibling.textContent
-        console.log(starIconText)
+        // console.log(starIconText)
         Tasks.taskList.forEach(obj => {
             if (obj.name == starIconText) {
                 if (obj.important == true) {
@@ -93,7 +95,7 @@ for (let idx = 0; idx < trashIcon.length; idx++) {
 
         // remove the task from Tasks object with the same name
         const objIdx = Tasks.taskList.findIndex((obj) => obj.name == taskText)
-        console.log(objIdx)
+        // console.log(objIdx)
         Tasks.removeTask(objIdx)
 
         taskElement.remove()
@@ -101,8 +103,8 @@ for (let idx = 0; idx < trashIcon.length; idx++) {
         // update the data to local storage
         updateLocalStorage(STORAGE_KEY, Tasks)
 
-        console.log("createTasks.js delete", Tasks.taskList, localStorage)  //***debugging***()
-        console.log("==================================")
+        // console.log("createTasks.js delete", Tasks.taskList, localStorage)  //***debugging***()
+        // console.log("==================================")
 
     })
 }
@@ -129,7 +131,6 @@ for (let idx = 0; idx < taskTextDiv.length; idx++) {
 
 // toggle starred tasks
 let starIcons = document.querySelectorAll(".starIcon")
-console.log(starIcons)
 for (let idx = 0; idx < starIcons.length; idx++) {
     let starIcon = starIcons[idx]
     starIcon.addEventListener('click', () => {

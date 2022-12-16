@@ -97,37 +97,64 @@ function createTasks() {
   let taskTextDiv = document.querySelectorAll(".taskTextDiv")
   for (let idx = 0; idx < taskTextDiv.length; idx++) {
     let textDiv = taskTextDiv[idx]
+    let textDivText = textDiv.textContent
     textDiv.addEventListener('click', () => {
       if (textDiv.classList.contains("taskCompleted")) {
         textDiv.classList.remove("taskCompleted")
-        Tasks.taskList[idx].completed = false
+        for (let i = 0; i < Tasks.taskList.length; i++) {
+          let obj = Tasks.taskList[i]
+          if (obj.name == textDivText) {
+            if (obj.completed == true) {
+              Tasks.taskList[i].completed = false
+            }
+          }
+        }
       } else {
         textDiv.classList.add("taskCompleted")
-        Tasks.taskList[idx].completed = true
+        for (let i = 0; i < Tasks.taskList.length; i++) {
+          let obj = Tasks.taskList[i]
+          if (obj.name == textDivText) {
+            if (obj.completed == false) {
+              Tasks.taskList[i].completed = true
+            }
+          }
+        }
       }
       updateLocalStorage(STORAGE_KEY, Tasks)
     })
   }
 
-  // toggle starred tasks
-  let starIcons = document.querySelectorAll(".starIcon")
-  // console.log(starIcons)
-  for (let idx = 0; idx < starIcons.length; idx++) {
+ // toggle starred tasks
+let starIcons = document.querySelectorAll(".starIcon")
+for (let idx = 0; idx < starIcons.length; idx++) {
     let starIcon = starIcons[idx]
+    let starIconText = starIcon.parentElement.parentElement.previousElementSibling.textContent
     starIcon.addEventListener('click', () => {
-      // console.log(starIcon, starIcon.classList)
-      if (starIcon.classList.contains("starred")) {
-        starIcon.classList.remove("starred")
-        Tasks.taskList[idx].important = false
-      } else {
-        starIcon.classList.add("starred")
-        Tasks.taskList[idx].important = true
-      }
-      updateLocalStorage(STORAGE_KEY, Tasks)
+        if (starIcon.classList.contains("starred")) {
+            starIcon.classList.remove("starred")
+            for (let i = 0; i < Tasks.taskList.length; i++) {
+                let obj = Tasks.taskList[i]
+                if (obj.name == starIconText) {
+                    if (obj.important == false) {
+                        Tasks.taskList[i].important = true
+                    }
+                }
+            }
+        } else {
+            starIcon.classList.add("starred")
+            for (let i = 0; i < Tasks.taskList.length; i++) {
+                let obj = Tasks.taskList[i]
+                if (obj.name == starIconText) {
+                    if (obj.important == false) {
+                        Tasks.taskList[i].important = true
+                    }
+                }
+            }
+        }
+        updateLocalStorage(STORAGE_KEY, Tasks)
     })
-  }
+}
 
-  
 }
 
 // onclick of the submit button

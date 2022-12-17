@@ -7,6 +7,7 @@ const heading = document.querySelector('#main-heading')
 let starred = false
 
 listItemStar.addEventListener('click', (e) => {
+    task.value = ""
     document.querySelector('.task_button').addEventListener('click', e => {
         task.classList.remove('hidden')
         document.querySelector('.task_button').value = "Add Task"
@@ -77,6 +78,97 @@ listItemStar.addEventListener('click', (e) => {
             }
 
         }
+
+
+        // =========================
+  // everytime a new task is added 
+  // the following reference and bindings needs to be updated as well
+
+  let menuIcon = document.querySelectorAll(".menuIcon")
+  let trashIcon = document.querySelectorAll(".trashIcon")
+
+  // delete task functionality
+  for (let idx = 0; idx < trashIcon.length; idx++) {
+    let iconElement = trashIcon[idx]
+    iconElement.addEventListener('click', (pointerEvent) => {
+      let taskTextDiv = iconElement.parentElement.parentElement
+      let taskText = taskTextDiv.previousElementSibling.textContent
+      let taskElement = taskTextDiv.parentElement
+
+      // console.log(idx, taskElement, taskTextDiv.previousElementSibling.textContent, Tasks.taskList[idx]) //***debugging***
+
+      // remove the task from Tasks object with the same name
+      const objIdx = Tasks.taskList.findIndex((obj) => obj.name == taskText)
+      // console.log(objIdx)
+      Tasks.removeTask(objIdx)
+
+      taskElement.remove()
+
+      // update the data to local storage
+      updateLocalStorage(STORAGE_KEY, Tasks)
+
+      // console.log("createTasks.js delete", Tasks.taskList, localStorage)  //***debugging***()
+      // console.log("==================================")
+
+    })
+  }
+
+
+  // toggle completed tasks
+  let taskTextDiv = document.querySelectorAll(".taskTextDiv")
+  for (let idx = 0; idx < taskTextDiv.length; idx++) {
+    let textDiv = taskTextDiv[idx]
+    let textDivText = textDiv.textContent
+    textDiv.addEventListener('click', () => {
+      if (textDiv.classList.contains("taskCompleted")) {
+        textDiv.classList.remove("taskCompleted")
+        for (let i = 0; i < Tasks.taskList.length; i++) {
+          let obj = Tasks.taskList[i]
+          if (obj.name == textDivText) {
+            if (obj.completed == true) {
+              Tasks.taskList[i].completed = false
+            }
+          }
+        }
+      } else {
+        textDiv.classList.add("taskCompleted")
+        for (let i = 0; i < Tasks.taskList.length; i++) {
+          let obj = Tasks.taskList[i]
+          if (obj.name == textDivText) {
+            if (obj.completed == false) {
+              Tasks.taskList[i].completed = true
+            }
+          }
+        }
+      }
+      updateLocalStorage(STORAGE_KEY, Tasks)
+    })
+  }
+
+
+  // toggle starred tasks
+  let starIcons = document.querySelectorAll(".starIcon")
+  for (let idx = 0; idx < starIcons.length; idx++) {
+    let starIcon = starIcons[idx]
+    let starIconText = starIcon.parentElement.parentElement.previousElementSibling.textContent
+    starIcon.addEventListener('click', () => {
+      const objIdx = Tasks.taskList.findIndex((obj) => obj.name == starIconText)
+      console.log('createTasks js')
+      if (Tasks.taskList[objIdx].important == true) {
+        starIcon.classList.remove("starred")
+        Tasks.taskList[objIdx].important = false
+        console.log("create js became false")
+      } else {
+        starIcon.classList.add("starred")
+        Tasks.taskList[objIdx].important = true     
+        console.log("create js became true")
+      }
+
+      updateLocalStorage(STORAGE_KEY, Tasks)
+    })
+  }
+
+        // =========================
     }
 })
 

@@ -7,7 +7,6 @@ const heading = document.querySelector('#main-heading')
 let starred = false
 
 listItemStar.addEventListener('click', (e) => {
-
     document.querySelector('.task_button').addEventListener('click', e => {
         task.classList.remove('hidden')
         document.querySelector('.task_button').value = "Add Task"

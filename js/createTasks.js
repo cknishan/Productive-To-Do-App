@@ -45,10 +45,8 @@ function createTasks() {
     // update the data to local storage
     updateLocalStorage(STORAGE_KEY, Tasks)
 
-  }
-  task.value = ""
-
-  // Create a nwe Global tasks variable because we will take the consistent data again fromt he local storage with the methods included
+    // =============================================
+      // Create a nwe Global tasks variable because we will take the consistent data again fromt he local storage with the methods included
   Tasks = new TaskList();
 
   // Check if data available in LS before continuing
@@ -124,41 +122,39 @@ function createTasks() {
     })
   }
 
- // toggle starred tasks
-let starIcons = document.querySelectorAll(".starIcon")
-for (let idx = 0; idx < starIcons.length; idx++) {
+
+  // toggle starred tasks
+  let starIcons = document.querySelectorAll(".starIcon")
+  for (let idx = 0; idx < starIcons.length; idx++) {
     let starIcon = starIcons[idx]
     let starIconText = starIcon.parentElement.parentElement.previousElementSibling.textContent
     starIcon.addEventListener('click', () => {
-        if (starIcon.classList.contains("starred")) {
-            starIcon.classList.remove("starred")
-            for (let i = 0; i < Tasks.taskList.length; i++) {
-                let obj = Tasks.taskList[i]
-                if (obj.name == starIconText) {
-                    if (obj.important == false) {
-                        Tasks.taskList[i].important = true
-                    }
-                }
-            }
-        } else {
-            starIcon.classList.add("starred")
-            for (let i = 0; i < Tasks.taskList.length; i++) {
-                let obj = Tasks.taskList[i]
-                if (obj.name == starIconText) {
-                    if (obj.important == false) {
-                        Tasks.taskList[i].important = true
-                    }
-                }
-            }
-        }
-        updateLocalStorage(STORAGE_KEY, Tasks)
+      const objIdx = Tasks.taskList.findIndex((obj) => obj.name == starIconText)
+      console.log('createTasks js')
+      if (Tasks.taskList[objIdx].important == true) {
+        starIcon.classList.remove("starred")
+        Tasks.taskList[objIdx].important = false
+        console.log("create js became false")
+      } else {
+        starIcon.classList.add("starred")
+        Tasks.taskList[objIdx].important = true     
+        console.log("create js became true")
+      }
+
+      updateLocalStorage(STORAGE_KEY, Tasks)
     })
-}
+  }
+
+    // ============================================
+
+  }
+  task.value = ""
+
 
 }
 
 // onclick of the submit button
-taskForm.addEventListener('submit', (e) => {
+taskForm.addEventListener('click', (e) => {
   e.preventDefault()
   createTasks()
 })

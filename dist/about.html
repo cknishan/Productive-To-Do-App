@@ -2,60 +2,91 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- css -->
-  <link rel="stylesheet" href="./output.css">
-  <!-- js -->
-  <script src="../js/responsiveMenu.js" defer></script>
-  <title>To Do App</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css -->
+    <link rel="stylesheet" href="./output.css">
+    <!-- js -->
+    <script src="../js/responsiveMenu.js" defer></script>
+    <!-- fav icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script src="js/settings.js" defer></script>
+    <title>To Do App</title>
 </head>
 
 <body>
-  <div class="md:grid md:grid-cols-4 h-screen">
-    <!--content wrapper-->
+    <div class="md:grid md:grid-cols-4 h-screen">
+        <!--content wrapper-->
 
-    <!-- menu wrapper -->
-    <div class="bg-slate-900 text-gray-200">
-      <nav>
-        <div class="flex justify-between items-center">
-          <div>
-            <div class="font-bold uppercase p-4 md:border-b-8 border-emerald-500 text-5xl flex">
-              <span class="text-emerald-500">To Do
-              </span>
-            </div>
-          </div>
-          <div class="px-4 cursor-pointer md:hidden" id="burger">
-            <svg class="w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-          </div>
-        </div>
-        <ul class="text-sm mt-6 hidden md:block" id="menu">
-          <div class="border-b border-black-100 py-4">
-            <li class="menu-li"><a href="../index.html">Back to App</a></li>
-            <li class="menu-li active-li"><a href="about.html">About</a></li>
-          </div>
-          <div>
-            <!-- <li class="menu-li">Groceries</li>
+        <!-- menu wrapper -->
+        <div class="bg-slate-900 text-gray-200">
+            <nav>
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="font-bold uppercase p-4 md:border-b-8 border-emerald-500 text-5xl flex">
+                            <span class="text-emerald-500">To Do
+                            </span>
+                        </div>
+                    </div>
+                    <div class="px-4 cursor-pointer md:hidden" id="burger">
+                        <svg class="w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </div>
+                </div>
+                <ul class="text-sm mt-6 hidden md:block" id="menu">
+                    <div class="border-b border-black-100 py-4">
+                        <li class="menu-li"><a href="../index.html">Back to App</a></li>
+                        <li class="menu-li active-li"><a href="about.html">About</a></li>
+                    </div>
+                    <div>
+                        <!-- <li class="menu-li">Groceries</li>
             <li class="menu-li">Study</li>
             <li class="menu-li">Daily Routine</li> -->
-          </div>
-        </ul>
-      </nav>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- main content starts -->
+        <main class="px-16 py-6 bg-gray-200 col-span-3">
+            <header>
+                <h2 id="main-heading" class="text-gray-700 text-6xl font-semibold">About</h2>
+            </header>
+
+            <h3 class="font-bold pb-2 mt-12 border-b border-gray-200">App Description</h3>
+            <section>
+                <p>
+                    This is a simple to do app that uses local storage to save the users todo list data on the browser.
+                    As long as you don't clear the session storage all the todo datas will be updated and saved.
+                </p>
+                <p>
+                    The functionality of the app are: Adding Tasks - Deleting Tasks - Mark as Complete - Mark as
+                    Important.
+                </p>
+            </section>
+
+            <h3 class="font-bold pb-2 mt-12 border-b border-gray-200">Developed by</h3>
+            <section>
+                <p>
+                    <a href="https://github.com/cknishan/To-Do-App" target="_blank">
+                        <span class="text-emerald-500 font-bold">Code Source</span></a>
+                </p>
+                <span>&copy;</span>Copyright
+                <a href="https://github.com/cknishan" target="_blank">
+                    <span class="text-emerald-500 font-bold">
+                        cknishan
+                        <i class="fab fa-github"></i>
+                    </span>
+                </a>
+            </section>
+
+        </main>
     </div>
-
-    <!-- main content starts -->
-    <main class="px-16 py-6 bg-gray-200 col-span-3">
-
-      <header>
-        <h2 id="main-heading" class="text-gray-700 text-6xl font-semibold">About</h2>
-      </header>
-
-    </main>
-  </div>
 </body>
 
 </html>
